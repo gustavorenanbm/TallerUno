@@ -6,7 +6,7 @@ const PantallaInicioSesion = () => {
   const [password, setPassword] = useState('');
 
   const handleInicioSesion = () => {
-    // Aquí lógica para validar e iniciar sesión
+    
     console.log('Iniciando sesión con:', { email });
   };
 
