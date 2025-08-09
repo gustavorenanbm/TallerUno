@@ -6,8 +6,8 @@ import PantallaInicioSesion from './Componentes/PantallaInicioSesion';
 const App = () => {
   return (
     <View style={{flex:1}} >
-      <PantallaRegistro/>
-      {/* <PantallaInicioSesion/> */}
+      {/* <PantallaRegistro/> */}
+      <PantallaInicioSesion/>
     </View>
   );
 };

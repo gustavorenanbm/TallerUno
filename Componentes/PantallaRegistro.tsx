@@ -1,88 +1,123 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
+
+type RegisterForm = {
+  nombre: string;
+  apellido: string;
+  email: string;
+  password: string;
+  confirmarPassword: string;
+};
 
 const PantallaRegistro = () => {
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmarPassword, setConfirmarPassword] = useState('');
+  const [form, setForm] = useState<RegisterForm>({
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: '',
+    confirmarPassword: ''
+  });
+
+  const changeForm = <K extends keyof RegisterForm>(property: K, value: string) => {
+    setForm(prev => ({ ...prev, [property]: value }));
+  };
 
   const handleRegistro = () => {
-        console.log('Registrando usuario:', { nombre, apellido, email });
+    
+    if (
+      !form.nombre.trim() ||
+      !form.apellido.trim() ||
+      !form.email.trim() ||
+      !form.password.trim() ||
+      !form.confirmarPassword.trim()
+    ) {
+      Alert.alert('Campos vacíos', 'Complete todos los campos.');
+      return;
+    }
+    
+    if (form.password !== form.confirmarPassword) {
+      Alert.alert('Error', 'Las contrasenias no coinciden.');
+      return;
+    }
+
+    
+    const { confirmarPassword, ...payload } = form;
+    console.log(payload);
+    Alert.alert('OK', 'Datos de Registro enviados a consola.');
   };
 
   return (
     <View style={styles.container}>
-        <Image 
+      <Image
         source={require("../Componentes/Imagenes/registro2.png")}
         style={styles.imagen}
-        />
+      />
       <Text style={styles.titulo}>Registro</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Nombre"
-        value={nombre}
-        onChangeText={setNombre}
+        value={form.nombre}
+        onChangeText={(t) => changeForm('nombre', t)}
       />
       <TextInput
         style={styles.input}
         placeholder="Apellido"
-        value={apellido}
-        onChangeText={setApellido}
+        value={form.apellido}
+        onChangeText={(t) => changeForm('apellido', t)}
       />
       <TextInput
         style={styles.input}
         placeholder="Correo electrónico"
-        value={email}
-        onChangeText={setEmail}
+        value={form.email}
+        onChangeText={(t) => changeForm('email', t)}
         keyboardType="email-address"
+        autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
         placeholder="Contraseña"
-        value={password}
-        onChangeText={setPassword}
+        value={form.password}
+        onChangeText={(t) => changeForm('password', t)}
         secureTextEntry
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirmar contraseña"
-        value={confirmarPassword}
-        onChangeText={setConfirmarPassword}
+        placeholder="Confirmar contrasenia"
+        value={form.confirmarPassword}
+        onChangeText={(t) => changeForm('confirmarPassword', t)}
         secureTextEntry
       />
+
       <Button title="Registrarse" onPress={handleRegistro} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    justifyContent: 'center',
-    backgroundColor:"#689B8A"
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    justifyContent: 'center', 
+    backgroundColor: '#689B8A' 
   },
-  titulo: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center',
+  titulo: { 
+    fontSize: 24, 
+    marginBottom: 20, 
+    textAlign: 'center' 
   },
-  input: {
-    borderWidth: 1,
-    marginBottom: 10,
-    padding: 10,
-    borderRadius: 8,
-    
+  input: { 
+    borderWidth: 1, 
+    marginBottom: 10, 
+    padding: 10, 
+    borderRadius: 8 
   },
-  imagen: {
-  width: 150,
-  height: 150,
-  alignSelf: 'center',
-  marginBottom: 20,
-},
-
+  imagen: { 
+    width: 150, 
+    height: 150, 
+    alignSelf: 'center', 
+    marginBottom: 20 
+  },
 });
 
 export default PantallaRegistro;
