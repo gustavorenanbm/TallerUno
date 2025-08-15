@@ -1,9 +1,19 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import { ImageSourcePropType } from 'react-native';
 
-export type Product = { id: string; nombre: string; precio: number; imagen?: ImageSourcePropType };
-export type CartLine = { product: Product; qty: number };
-export type CartItem = { id: string; nombre: string; precio: number; qty: number };
+export type Product = { 
+    id: string; 
+    nombre: string; 
+    precio: number; 
+    imagen?: ImageSourcePropType };
+export type CartLine = { 
+    product: Product; 
+    qty: number };
+export type CartItem = { 
+    id: string; 
+    nombre: string; 
+    precio: number; 
+    qty: number };
 
 type CartContextType = {
   lines: CartLine[];
@@ -14,7 +24,7 @@ type CartContextType = {
   clear: () => void;
   count: number;      // cantidad total de ítems
   subtotal: number;   // suma sin impuestos
-  iva: number;        // 12% (ajústalo si tu profe pide otro)
+  iva: number;        // 12% 
   total: number;      // subtotal + iva
 };
 
@@ -62,7 +72,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return { count, subtotal };
   }, [lines]);
 
-  const iva = subtotal * 0.15; // cambia el 0.12 si necesitas otro porcentaje
+  const iva = subtotal * 0.15; 
   const total = subtotal + iva;
 
   const value: CartContextType = { lines, add, inc, dec, remove, clear, count, subtotal, iva, total };

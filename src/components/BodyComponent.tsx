@@ -10,6 +10,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff', // luego lo puedes reemplazar por tu color primario/secundario
+    backgroundColor: '#fff', 
   },
 });

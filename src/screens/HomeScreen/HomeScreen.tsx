@@ -96,13 +96,28 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: -2 },
   },
-  cartPanelHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  cartPanelTitle: { fontSize: 18, fontWeight: '700' },
-  cartClose: { fontSize: 18 },
+  cartPanelHeader: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center' 
+  },
+  cartPanelTitle: { 
+    fontSize: 18, 
+    fontWeight: '700' 
+  },
+  cartClose: { 
+    fontSize: 18 
+  },
 
-  cartEmpty: { marginTop: 12, color: '#555' },
+  cartEmpty: { 
+    marginTop: 12, 
+    color: '#555' 
+  },
 
-  cartItems: { marginTop: 12, maxHeight: 220 },
+  cartItems: { 
+    marginTop: 12, 
+    maxHeight: 220 
+  },
   cartRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -110,21 +125,45 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#eee',
   },
-  cartName: { fontSize: 14 },
-  cartPrice: { fontSize: 14, fontWeight: '600' },
+  cartName: { 
+    fontSize: 14 
+  },
+  cartPrice: { 
+    fontSize: 14, 
+    fontWeight: '600' 
+  },
 
-  cartFooter: { marginTop: 12 },
-  total: { fontSize: 16, fontWeight: '700', marginBottom: 12 },
+  cartFooter: { 
+    marginTop: 12 
+  },
+  total: { 
+    fontSize: 16, 
+    fontWeight: '700', 
+    marginBottom: 12 
+  },
 
-  cartActions: { flexDirection: 'row', gap: 10 },
+  cartActions: { 
+    flexDirection: 'row', 
+    gap: 10 
+  },
   btn: {
     flex: 1,
     paddingVertical: 12,
     borderRadius: 10,
     alignItems: 'center',
   },
-  btnPrimary: { backgroundColor: '#2e7d32' },
-  btnOutline: { borderWidth: 1, borderColor: '#999' },
-  btnText: { color: '#fff', fontWeight: '700' },
-  btnOutlineText: { color: '#333' },
+  btnPrimary: { 
+    backgroundColor: '#2e7d32' 
+  },
+  btnOutline: { 
+    borderWidth: 1, 
+    borderColor: '#999' 
+  },
+  btnText: { 
+    color: '#fff', 
+    fontWeight: '700' 
+  },
+  btnOutlineText: { 
+    color: '#333' 
+  },
 });
