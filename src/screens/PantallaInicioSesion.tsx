@@ -1,12 +1,17 @@
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, Alert, Pressable } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert, Pressable, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { RootStackParamList } from '../navigator/StackNavigator';
+import { useNavigation } from '@react-navigation/native';
 
+type Nav = NativeStackNavigationProp<RootStackParamList, "PantallaInicioSesion">;
 type LoginForm = {
   email: string;
   password: string;
 };
 
 const PantallaInicioSesion = () => {
+  const nav = useNavigation<Nav>();
   const [form, setForm] = useState<LoginForm>({ email: '', password: '' });
   const [mostrarPass, setMostrarPass] = useState(false);
 
@@ -22,13 +27,17 @@ const PantallaInicioSesion = () => {
     }
     
     console.log({ ...form });
-    Alert.alert('OK', 'Datos de Login enviados a consola.');
+    nav.navigate ("Home");
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+    style={{flex:1}}
+    behavior={Platform.OS === "ios"? "padding":"height"}
+    >
+    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
       <Image
-        source={require("../Componentes/Imagenes/Carrito.png")}
+        source={require("../../assets/Imagenes/Carrito.png")}
         style={styles.imagen}
       />
       <Text style={styles.titulo}>Iniciar Sesión</Text>
@@ -55,7 +64,14 @@ const PantallaInicioSesion = () => {
       </Pressable>
 
       <Button title="Ingresar" onPress={handleInicioSesion} />
-    </View>
+
+      <TouchableOpacity onPress={() => nav.navigate('PantallaRegistro')}>
+        <Text style={{color: "white", textAlign:"center", marginTop:15}}>
+          ¿No tienes cuenta? Regístrate
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,14 +1,20 @@
 import React from 'react'
 import { View } from 'react-native'
-import PantallaRegistro from './Componentes/PantallaRegistro'
-import PantallaInicioSesion from './Componentes/PantallaInicioSesion';
+import PantallaRegistro from './src/screens/PantallaRegistro'
+import PantallaInicioSesion from './src/screens/PantallaInicioSesion';
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigator from './src/navigator/StackNavigator';
+import { CartProvider } from './src/context/CartContext';
+
+
 
 const App = () => {
   return (
-    <View style={{flex:1}} >
-      {/* <PantallaRegistro/> */}
-      <PantallaInicioSesion/>
-    </View>
+    <CartProvider>
+    <NavigationContainer>
+      <StackNavigator/>
+    </NavigationContainer>
+    </CartProvider>
   );
 };
 export default App;

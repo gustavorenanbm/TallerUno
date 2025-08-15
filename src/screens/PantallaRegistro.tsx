@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Image, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+
 
 type RegisterForm = {
   nombre: string;
@@ -47,9 +48,13 @@ const PantallaRegistro = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+    style={{flex:1}}
+    behavior={Platform.OS === "ios"? "padding" : "height"}
+    >
+      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
       <Image
-        source={require("../Componentes/Imagenes/registro2.png")}
+        source={require("../../assets/Imagenes/registro2.png")}
         style={styles.imagen}
       />
       <Text style={styles.titulo}>Registro</Text>
@@ -90,7 +95,8 @@ const PantallaRegistro = () => {
       />
 
       <Button title="Registrarse" onPress={handleRegistro} />
-    </View>
+    </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
